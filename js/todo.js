@@ -9,13 +9,24 @@ function handleTodoSubmit(event){
     paintTodo(newTodo);
 }
 
+
+function deleteTodo(event) {
+    const li = event.target.parentElement;
+    li.remove();
+}
+
 function paintTodo(newTodo) {
     const li = document.createElement("li");
     const span = document.createElement("span");
+    span.innerHTML = newTodo;
+    const button = document.createElement("button");
+    button.innerHTML = "❌";
+    button.addEventListener("click", deleteTodo);
 
     li.appendChild(span);
-    span.innerHTML = newTodo;
+    li.appendChild(button);
     toDoList.appendChild(li);
 }
+
 
 toDoForm.addEventListener("submit", handleTodoSubmit);
