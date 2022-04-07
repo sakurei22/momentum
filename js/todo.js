@@ -2,11 +2,20 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 
+const toDos = [];
+
+function saveTodos() {
+    //javascript object, array 어떤것이든 string으로 변경 : JSON.stringify()
+    localStorage.setItem("todos",JSON.stringify(toDos));
+}
+
 function handleTodoSubmit(event){
     event.preventDefault();
     const newTodo = toDoInput.value;
     toDoInput.value = "";
+    toDos.push(newTodo);
     paintTodo(newTodo);
+    saveTodos();
 }
 
 
