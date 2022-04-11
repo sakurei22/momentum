@@ -3,7 +3,7 @@ const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos";
-const toDos = [];
+let toDos = [];
 
 function saveTodos() {
     //javascript object, array 어떤것이든 string으로 변경 : JSON.stringify()
@@ -41,14 +41,10 @@ function paintTodo(newTodo) {
 
 toDoForm.addEventListener("submit", handleTodoSubmit);
 
-function sayHello( item ){
-    console.log("return " + item);
-}
-
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
 if(savedToDos) {
     const parsedToDos = JSON.parse(savedToDos);
-    //parsedToDos.forEach(sayHello);
-    parsedToDos.forEach((item) => console.log("this is the turn of ", item));
+    toDos = parsedToDos;
+    parsedToDos.forEach(paintTodo);
 }
