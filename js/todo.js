@@ -14,21 +14,27 @@ function handleTodoSubmit(event){
     event.preventDefault();
     const newTodo = toDoInput.value;
     toDoInput.value = "";
-    toDos.push(newTodo);
-    paintTodo(newTodo);
+    const newTodayObj = {
+        text : newTodo,
+        id : Date.now()
+    }
+    toDos.push(newTodayObj);
+    paintTodo(newTodayObj);
     saveTodos();
 }
 
 
 function deleteTodo(event) {
     const li = event.target.parentElement;
+    console.log(li.id);
     li.remove();
 }
 
-function paintTodo(newTodo) {
+function paintTodo(newTodayObj) {
     const li = document.createElement("li");
+    li.id = newTodayObj.id;
     const span = document.createElement("span");
-    span.innerHTML = newTodo;
+    span.innerHTML = newTodayObj.text;
     const button = document.createElement("button");
     button.innerHTML = "❌";
     button.addEventListener("click", deleteTodo);
