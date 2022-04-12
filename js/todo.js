@@ -26,8 +26,10 @@ function handleTodoSubmit(event){
 
 function deleteTodo(event) {
     const li = event.target.parentElement;
-    console.log(li.id);
     li.remove();
+    //filter를 통해 삭제
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    saveTodos(toDos);
 }
 
 function paintTodo(newTodayObj) {
